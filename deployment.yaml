@@ -1,4 +1,21 @@
 #############################
+#     SERVICE YML          #
+############################
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointment-management-service
+spec:
+  selector:
+    app: appointment-management-service
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+#############################
 #     DEPLOYMENT YML       #
 ############################
 apiVersion: apps/v1
@@ -25,19 +42,3 @@ spec:
             - containerPort: 8080
 
 
-#############################
-#     SERVICE YML          #
-############################
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: appointment-management-service
-spec:
-  selector:
-    app: appointment-management-service
-  type: NodePort
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
