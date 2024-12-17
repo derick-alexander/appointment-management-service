@@ -1,0 +1,4 @@
+server:
+  port: 7073
+  servlet:
+    context-path: /api/notification-management-service

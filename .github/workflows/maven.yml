@@ -1,4 +1,4 @@
-name: data-aggregator-service CI/CD Flow
+name: appointment-management-service CI/CD Flow
 
 on:
   push:
@@ -11,8 +11,8 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT_ID }}
   SI_CLUSTER: medi-track
   SI_ZONE: us-central1
-  DEPLOYMENT_NAME: data-aggregator-service
-  IMAGE: data-aggregator-service
+  DEPLOYMENT_NAME: appointment-management-service
+  IMAGE: appointment-management-service
   TAG: prod
   NAMESPACE: production
 
@@ -71,7 +71,7 @@ jobs:
         run: |
           echo "Running Integration Tests..."
           # Replace this with your actual integration test script/command
-          curl --fail http://localhost:8080/api/data-aggregator-service/health || exit 1
+          curl --fail http://localhost:8080/api/appointment-management-service/health || exit 1
 
       - name: Verify Deployment
         run: kubectl get services -n $NAMESPACE -o wide
@@ -93,4 +93,4 @@ jobs:
         run: |
           echo "Running Scheduled Integration Tests..."
           # Replace this with your actual integration test script/command
-          curl --fail http://localhost:8080/api/data-aggregator-service/health || exit 1
+          curl --fail http://localhost:8080/api/appointment-management-service/health || exit 1

@@ -4,22 +4,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: data-aggregator-service
+  name: appointment-management-service
   labels:
-    app: data-aggregator-service
+    app: appointment-management-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: data-aggregator-service
+      app: appointment-management-service
   template:
     metadata:
       labels:
-        app: data-aggregator-service
+        app: appointment-management-service
     spec:
       containers:
-        - name: data-aggregator-service
-          image: gcr.io/phrasal-petal-444312-m0/data-aggregator-service:prod
+        - name: appointment-management-service
+          image: gcr.io/phrasal-petal-444312-m0/appointment-management-service:prod
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -32,10 +32,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: data-aggregator-service
+  name: appointment-management-service
 spec:
   selector:
-    app: data-aggregator-service
+    app: appointment-management-service
   type: NodePort
   ports:
     - protocol: TCP
