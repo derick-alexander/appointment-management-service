@@ -66,4 +66,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         log.info("Deleting appointment with ID: {}", id);
         appointmentRepository.deleteById(id);
     }
+
+    @Override
+    public List<Appointment> getAll() {
+        return appointmentRepository.findAll();
+    }
 }

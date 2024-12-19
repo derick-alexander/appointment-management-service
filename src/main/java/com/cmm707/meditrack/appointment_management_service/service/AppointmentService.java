@@ -15,4 +15,5 @@ public interface AppointmentService {
     List<Appointment> getAppointmentsByDoctor(String doctorId, LocalDateTime start, LocalDateTime end);
     List<Appointment> getAppointmentsByPatient(String patientId);
     void deleteAppointment(String id);
+    List<Appointment> getAll();
 }
