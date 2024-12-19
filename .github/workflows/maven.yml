@@ -67,30 +67,29 @@ jobs:
           kubectl apply -n $NAMESPACE -f deployment.yaml
           kubectl rollout restart -n $NAMESPACE deployment "$DEPLOYMENT_NAME"
 
-#      - name: Post-Deployment Integration Tests
-#        run: |
-#          echo "Running Integration Tests..."
-#          # Replace this with your actual integration test script/command
-#          curl --fail http://localhost:8080/api/appointment-management-service/health || exit 1
+      - name: Post-Deployment Integration Tests
+        run: |
+          echo "Running Integration Tests..."
+          curl --fail http://35.244.210.229/api/appointment-management-service/health || exit 1
 
       - name: Verify Deployment
         run: kubectl get services -n $NAMESPACE -o wide
 
-#  periodic-integration-tests:
-#    name: Periodic Integration Tests
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Setup Google Cloud CLI
-#        uses: google-github-actions/setup-gcloud@v1
-#        with:
-#          service_account_key: ${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}
-#          project_id: ${{ secrets.GKE_PROJECT_ID }}
-#
-#      - name: Get Cluster Credentials
-#        run: gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE" --project "$PROJECT_ID"
-#
-#      - name: Run Integration Tests
-#        run: |
-#          echo "Running Scheduled Integration Tests..."
-#          # Replace this with your actual integration test script/command
-#          curl --fail http://localhost:8080/api/appointment-management-service/health || exit 1
+  periodic-integration-tests:
+    name: Periodic Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_key: ${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT_ID }}
+
+      - name: Get Cluster Credentials
+        run: gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE" --project "$PROJECT_ID"
+
+      - name: Run Integration Tests
+        run: |
+          echo "Running Scheduled Integration Tests..."
+          # Replace this with your actual integration test script/command
+          curl --fail http://35.244.210.229/api/appointment-management-service/health || exit 1
