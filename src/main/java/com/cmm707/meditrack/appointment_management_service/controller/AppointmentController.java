@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller for managing appointments.
  */
 @RestController
-@RequestMapping("/api/appointments")
+@RequestMapping("/appointments")
 @RequiredArgsConstructor
 @Slf4j
 public class AppointmentController {
