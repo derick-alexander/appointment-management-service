@@ -2,3 +2,8 @@ server:
   port: 8080
   servlet:
     context-path: /api/appointment-management-service
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://derickawsalexander:EJUkqR9PzukziQZi@cluster0.1if2k.mongodb.net/medi_track
